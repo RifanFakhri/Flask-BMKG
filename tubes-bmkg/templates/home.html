@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm  bg-white rounded" >
+                <div class="card-body " style="font-size: 15px;">
+                  <h5 class="card-title">Gempa Bumi Terkini</h5>
+                  <div class="row">
+                    <div class="col-md-5">
+                        <img src="https://data.bmkg.go.id/DataMKG/TEWS/{{data.Shakemap}}" width="100%">
+                    </div>
+                    <div class="col-md-7">
+                        <ul class="list-group list-group-flush" >
+                            <li class="list-group-item border-0">{{ data.Tanggal }} {{data.Jam}}</li>
+                            <li class="list-group-item border-0">
+                                <i data-feather="activity" class="text-danger"></i>
+                                 Magnitudo {{data.Magnitude}}
+                            </li>
+                            <li class="list-group-item border-0">
+                                <i data-feather="disc" class="text-success"></i>
+                                 Kedalaman {{data.Kedalaman}}
+                            </li>
+                            <li class="list-group-item border-0">
+                                <i data-feather="map-pin" class="text-warning"></i>
+                                Lokasi {{data.Lintang}} - {{data.Bujur}}</li>
+                          </ul>
+                    </div>
+                  </div>
+                  <p class="card-text mt-3">
+                    <i data-feather="target" class="text-danger"></i>
+                    {{data.Wilayah}}
+                  </p>
+                  <p class="card-text mt-3">
+                    <i data-feather="radio" class="text-warning"></i>
+                    Dirasakan (Skala MMI): {{data.Dirasakan}}
+                  </p>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="row">
+                       <div class="container">
+                        <h5>Gempa Dirasakan</h5>
+                       </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered text-center" style="font-size: 15px;">
+                        <thead>
+                            <tr>
+                                <th>Waktu Gempa</th>
+                                <th>Lintang</th>
+                                <th>Bujur</th>
+                                <th>Magnitudo</th>
+                                <th>Kedalaman</th>
+                                <th>Dirasakan (Skala MMI)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in gempa_dirasakan %}
+                            <tr>
+                                <td>{{row.Tanggal}} {{row.Jam}}</td>
+                                <td>{{row.Lintang}}</td>
+                                <td>{{row.Bujur}}</td>
+                                <td>{{row.Magnitude}} M</td>
+                                <td>{{row.Kedalaman}}</td>
+                                <td style="width: 35%;">
+                                    {{row.Wilayah}}
+                                    <br>
+                                    {{row.Dirasakan}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Rata-rata kekuatan 15 gempa terakhir </th>
+                                <th>{{rata_rata_gempa}} M</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

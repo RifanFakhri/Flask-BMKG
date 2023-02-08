@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>Gempa Bumi Terkini (M 5.0+)</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <form class="form-inline float-left" method="POST" action="">
+                                <div class="form-group mb-2 mx-sm-3">
+                                  <select name="filter" class="form-control">
+                                    <option disabled selected>Urutkan Berdasarkan</option>
+                                    <option value="Magnitude"> Kekuatan Gempa </option>
+                                  </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Urutkan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered text-center" style="font-size: 15px;">
+                        <thead>
+                            <tr>
+                                <th>Waktu Gempa</th>
+                                <th>Lintang</th>
+                                <th>Bujur</th>
+                                <th>Magnitudo</th>
+                                <th>Kedalaman</th>
+                                <th>Wilayah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                            <tr>
+                                <td>{{row.Tanggal}} {{row.Jam}}</td>
+                                <td>{{row.Lintang}}</td>
+                                <td>{{row.Bujur}}</td>
+                                <td>{{row.Magnitude}} M</td>
+                                <td>{{row.Kedalaman}}</td>
+                                <td>{{row.Wilayah}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
